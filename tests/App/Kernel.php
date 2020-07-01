@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
-final class Kernel extends BaseKernel
+class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
