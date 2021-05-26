@@ -29,21 +29,24 @@ final class RedirectAdmin extends AbstractAdmin
         'redirect.httpCode.temporal' => Redirect::TEMPORAL,
     ];
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    protected function configureDatagridFilters(DatagridMapper $filter): void
     {
-        $datagridMapper
+        $filter
             ->add('source')
             ->add('destination')
-            ->add('httpCode', null, [], ChoiceType::class, [
-                'choices' => self::$typeChoices,
+            ->add('httpCode', null, [
+                'field_options' => [
+                    'choices' => self::$typeChoices,
+                ],
+                'field_type' => ChoiceType::class,
             ])
             ->add('automatic')
             ->add('publish');
     }
 
-    protected function configureListFields(ListMapper $listMapper): void
+    protected function configureListFields(ListMapper $list): void
     {
-        $listMapper
+        $list
             ->add('source', 'url', [
                 'hide_protocol' => true,
                 'attributes' => [
@@ -73,9 +76,9 @@ final class RedirectAdmin extends AbstractAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper): void
+    protected function configureFormFields(FormMapper $form): void
     {
-        $formMapper
+        $form
             ->add('source', null, [
                 'help' => 'redirect.source',
             ])
